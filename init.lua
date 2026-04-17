@@ -1,6 +1,6 @@
 -- Require:
 -- - nvim 0.12
--- - fzf, rg, fd
+-- - fzf, rg, fd, tree-sitter-cli
 -- - LSPs (gopls, rust_analyzer etc.) - of course, if you need them
 
 vim.opt.number = true -- show number 
@@ -32,6 +32,7 @@ vim.pack.add {
   { src = 'https://github.com/neovim/nvim-lspconfig' }, -- default LSP configs
   { src = 'https://github.com/ibhagwan/fzf-lua' }, -- fuzzy search engine
   { src = 'https://github.com/vague-theme/vague.nvim' }, -- coloscheme
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- treesitter (for AST manipulation)
 }
 
 require('vim._core.ui2').enable({}) -- enable new UI
@@ -68,6 +69,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- tree-sitter (use pasrer for filetype) - remember to install with
+-- :TSInstal lannguage_name
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { '<filetype>' },
+  callback = function() vim.treesitter.start() end,
+})
+
 -- shortcuts (mode, keys, function_to_call, description)
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -80,4 +88,3 @@ vim.keymap.set('n', 'gra', fzf_lua_plugin.lsp_code_actions, { desc = 'Code actio
 vim.keymap.set('n', 'grr', fzf_lua_plugin.lsp_references, { desc = 'Goto references' }) -- remapped to use fzf-lua
 vim.keymap.set('n', 'gri', fzf_lua_plugin.lsp_implementations, { desc = 'Goto implementations' }) -- remapped to use fzf-lua
 vim.keymap.set('n', 'grt', fzf_lua_plugin.lsp_typedefs, { desc = 'Goto typedefinitions' }) -- remapped to use fzf-lua
--- TODO: maybe add treesitter, autoformat
