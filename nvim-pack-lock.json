@@ -4,6 +4,10 @@
       "rev": "4be0a6923a64dc411489b57b77a6bf6f30404e66",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "jb.nvim": {
+      "rev": "e580734e50c2502c78c61299537c8aae0bf89563",
+      "src": "https://github.com/nickkadutskyi/jb.nvim"
+    },
     "nvim-lspconfig": {
       "rev": "3c156abc4f7912f66d8687512d75b939b14fbc42",
       "src": "https://github.com/neovim/nvim-lspconfig"
@@ -11,10 +15,6 @@
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
-    },
-    "vague.nvim": {
-      "rev": "8751181a1aa431b4e8983b0a183afef5cbc08381",
-      "src": "https://github.com/vague-theme/vague.nvim"
     }
   }
 }

@@ -31,15 +31,15 @@ vim.opt.breakindent = true   -- break indent
 vim.pack.add {
   { src = 'https://github.com/neovim/nvim-lspconfig' },           -- default LSP configs
   { src = 'https://github.com/ibhagwan/fzf-lua' },                -- fuzzy search engine
-  { src = 'https://github.com/vague-theme/vague.nvim' },          -- coloscheme
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- treesitter (for AST manipulation)
+  { src = 'https://github.com/nickkadutskyi/jb.nvim' },           -- IntelliJ like colorscheme
 }
 
-require('vim._core.ui2').enable({})       -- enable new UI
 local fzf_lua_plugin = require('fzf-lua') -- init fzf-lua plugin, populating `FzfLua`
 fzf_lua_plugin.register_ui_select()       -- register vim.ui.select backend
 
-vim.cmd.colorscheme('vague')              -- colorscheme
+vim.cmd.colorscheme('jb')                 -- colorscheme (alternatives: 'retrobox')
+require('vim._core.ui2').enable({})       -- enable new UI
 
 -- LSPs config
 -- NOTE: make sure below LSPs are installed
