@@ -9,7 +9,7 @@ vim.opt.wrap = true           -- wrap lines
 vim.opt.tabstop = 2           -- spaces for tab
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.textwidth = 80
+-- vim.opt.textwidth = 80     -- wrap line after n characters (sometimes is useful)
 
 vim.opt.swapfile = false   -- is swapfile enabled?
 vim.g.mapleader = ' '      -- key for leader
@@ -38,14 +38,18 @@ vim.pack.add {
 local fzf_lua_plugin = require('fzf-lua') -- init fzf-lua plugin, populating `FzfLua`
 fzf_lua_plugin.register_ui_select()       -- register vim.ui.select backend
 
-vim.cmd.colorscheme('jb')                 -- colorscheme (alternatives: 'retrobox')
+vim.cmd.colorscheme('jb')                 -- colorscheme (alternatives to use in future: 'retrobox')
 require('vim._core.ui2').enable({})       -- enable new UI
 
 -- LSPs config
 -- NOTE: make sure below LSPs are installed
-vim.opt.completeopt =
-'menu,menuone,noselect,popup' -- ensures the menu appears even for a single match and uses the native popup window.
 vim.opt.autocomplete = true   -- enables the overall completion feature.
+vim.opt.completeopt = 'menuone,noselect,popup' -- ensures the menu appears even for a single match and uses the native popup window.
+vim.opt.complete:append('o') -- adds omnifunc option
+
+vim.opt.pumheight = 10
+-- vim.opt.pumborder = 'rounded'
+
 vim.lsp.config('lua_ls', { settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 vim.lsp.config('tsserver', { cmd = { 'typescript-language-server', '--stdio' }, })
 vim.lsp.config('basedpyright', {})
